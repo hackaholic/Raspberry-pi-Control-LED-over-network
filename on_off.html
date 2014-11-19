@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>On OF Led</title>
+<script>
+function led_on_off(num)
+{
+var xmlhttp;
+if(window.XMLHttpRequest)
+     xmlhttp = new XMLHttpRequest();
+else
+ xmlhttp = new ActiveXobjet("Microsoft.XMLHTTP");
+xmlhttp.onreadystatechange = function(){
+     if(xmlhttp.readyState == 4 && xmlhttp.status == 200)
+         document.getElementById('state').innerHTML = 'Status: ' + xmlhttp.responseText;
+    }
+if( num == 1)
+xmlhttp.open('POST','on_off.php?num=1',true);
+if( num == 0)
+xmlhttp.open('POST','on_off.php?num=0',true);
+xmlhttp.send();
+}
+</script>
+</head>
+<body>
+<div id="state" >Status:</div>
+<input type="button" onclick="led_on_off(1)" value="ON">
+<input type="button" onclick="led_on_off(0)" value="OFF">
+</body>
+</html>
